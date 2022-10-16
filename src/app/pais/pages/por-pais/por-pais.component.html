@@ -14,11 +14,11 @@
 
 <hr>
 
-<div class="alert alert-danger">
-    No se encontró nada con el término
+<div *ngIf="hayError" class="alert alert-danger">
+    No se encontró nada con el término {{ termino }}
 </div>
 
-<div class="row">
+<div *ngIf="paises.length > 0" class="row">
     <div class="col">
         <table class="table table-hover">
             <thead>
@@ -31,13 +31,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>001</td>
-                    <td>bandera</td>
-                    <td>nombre</td>
-                    <td>123456788</td>
+                <tr *ngFor="let pais of paises; index as i">
+                    <td>{{ i +1 }}</td>
+                    <td><img class="small-flag" src="{{pais.flags.svg}}" alt=""></td>
+                    <td>{{pais.name.common}}</td>
+                    <td>{{pais.population | number}}</td>
                     <td>
-                        <a href="#">Ver...</a>
+                        <a [routerLink]="['/pais',pais.cca2]">Ver...</a>
                     </td>
                 </tr>
             </tbody>
