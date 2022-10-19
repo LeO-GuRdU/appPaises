@@ -1,2 +1,24 @@
-<h2>Por Región</h2>
-<hr>
+<h2>
+  Por Región <small>region activa {{ regionActiva | titlecase }}</small>
+</h2>
+<hr />
+
+<h5>Seleccione la region</h5>
+
+<div class="row">
+  <div class="col">
+    <button
+      *ngFor="let region of regiones"
+      [class]="getClaseCSS(region)" 
+      (click)="activarRegion(region)"
+    >
+      {{ region | titlecase }}
+    </button>
+  </div>
+</div>
+<hr />
+<div *ngIf="paises.length > 0" class="row">
+    <div class="col">
+        <app-pais-tabla [paises]="paises"></app-pais-tabla>
+    </div>
+</div>
